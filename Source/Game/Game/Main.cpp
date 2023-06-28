@@ -1,11 +1,15 @@
 #include <iostream>
+#include "../../Engine/Core/Random.h"
+#include "../../Engine/Core/fileIO.h"
+using namespace std;
 
 int main()
 {
-#ifdef _DEBUG
-	std::cout << "Debug!\n";
-#endif
+	cout << kda::getFilePath() << endl;
 
-	std::cout << "Hello World!\n";
-	
+	kda::seedRandom((unsigned int)time(nullptr));
+	for (int i = 0; i < 10; i++)
+	{
+	cout << kda::random(69,69) << endl;
+	}
 }
