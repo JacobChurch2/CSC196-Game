@@ -1,16 +1,22 @@
 #include "Render.h"
+#include "SDL2-2.28.0/include/SDL_ttf.h"
 
 namespace kda
 {
+	Renderer g_renderer;
 
 	bool Renderer::Initialize()
 	{
 		SDL_Init(SDL_INIT_VIDEO);
+		TTF_Init();
 
 		return false;
 	}
 	void Renderer::Shutdown()
 	{
+		SDL_DestroyRenderer(m_renderer);
+		SDL_DestroyWindow(m_window);
+		TTF_Quit();
 	}
 	void Renderer::CreateWindow(const std::string& title, int width, int height)
 	{
@@ -27,7 +33,7 @@ namespace kda
 	{
 		SDL_RenderPresent(m_renderer);
 	}
-	void Renderer::SetColor(int R, int G, int B, int A)
+	void Renderer::SetColor(uint8_t R, uint8_t G, uint8_t B, uint8_t A)
 	{
 		SDL_SetRenderDrawColor(m_renderer, R, G, B, A);
 	}
